@@ -41,7 +41,7 @@ properties([
                 classpath: [], 
                 sandbox: false, 
                 script: 
-                    'return months_tab'
+                    'return ${months_tab}'
             ]
         ]
     ],
@@ -61,7 +61,7 @@ properties([
         script: [
             classpath: [], 
             sandbox: false, 
-            script: 'return activity_by_months[params.Month] ?: []'
+            script: 'return ${activity_by_months[params.Month] ?: []}'
         ]
     ]
    ]
