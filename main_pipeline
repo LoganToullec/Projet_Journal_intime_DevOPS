@@ -1,9 +1,10 @@
-def months_tab = [
+properties([
+environment {
+    months_tab = [
     'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
     'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
 ]
-
-def activity_by_months = [
+    activity_by_months = [
     'Janvier': ["Acheter un journal intime", "raconter une première journée dans le journal", "Parler de 5 sujets différentes dans le journal"],
     'Février': ["Réaliser un croquis de la décoration souhaitée", "Réaliser un inventaire / liste d'achats", "Acheter les décorations manquantes", "Installer les décorations"],
     'Mars': ["Sortir prendre l'air une fois par semaine","Manger sainement et s'autoriser un écart par semaine","Suivre des heures de coucher et de réveil","Aller courir 3 fois par semaine","Suivre une routine de soin de la peau"],
@@ -17,8 +18,7 @@ def activity_by_months = [
     'Novembre': ["Sélection de l'instrument à apprendre","Commencer des tutoriels pour débutants","Suivi des progrès","Partager sa progression"],
     'Décembre': ["Introduction à la respiration consciente","Rappels quotidiens pour respirer"]
 ]
-
-properties([
+}
   parameters([
     booleanParam(
         defaultValue: false,
