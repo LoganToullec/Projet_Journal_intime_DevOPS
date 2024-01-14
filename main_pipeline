@@ -3,7 +3,7 @@ properties([
     booleanParam(
         defaultValue: false,
         description: 'Cochez cette case si la date est avant le 15.',
-        name: 'before_half'
+        name: 'beforeHalf'
     ),
     [
       $class: 'ChoiceParameter',
@@ -21,7 +21,7 @@ properties([
                 classpath: [], 
                 sandbox: false, 
                 script: 
-                    'return["Janvier", "Février", "Mars", "Avril", "Mai", "Juin","Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]'
+                    'return["Janvier" ,"Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]'
             ]
         ]
     ],
@@ -81,7 +81,7 @@ pipeline {
       steps {
         script {
             echo "${params.Month}"
-            echo "${params.before_half}"
+            echo "${params.beforeHalf}"
             def selectedChoicesList = USinEPIC.split(',')
 
             // Afficher les choix sélectionnés
