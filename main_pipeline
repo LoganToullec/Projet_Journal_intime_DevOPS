@@ -75,7 +75,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "${params.Month}"
-        echo "${size(params.USinEPIC)}"
+        echo "${params.USinEPIC.size()}"
       }
     }
   }
