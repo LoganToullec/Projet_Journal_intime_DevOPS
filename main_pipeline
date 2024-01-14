@@ -104,18 +104,19 @@ pipeline {
             def beforeHalf = params.beforeHalf
             def selectedChoicesList = USinEPIC.split(',')
             def selectedChoicesAmount = selectedChoicesList.size()
+            def activityAmountForMonth = activity_by_months[month].size()
 
-            if (selectedChoicesAmount == 4) {
+            if (selectedChoicesAmount == activityAmountForMonth) {
                 echo "Félicitations, vous avez validé toutes vos envies de ${month} !!!"
             }
             else if (beforeHalf) {
-                if(selectedChoicesAmount >= 2) {
+                if(selectedChoicesAmount >= (activityAmountForMonth / 2)) {
                     echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :)"
                 } else {
                     echo "Vous n'avez pas validé le mois de ${month} pour l'instant ! Motivez vous :)"
                 }
             } else {
-                if(selectedChoicesAmount <= 2) {
+                if(selectedChoicesAmount <= (activityAmountForMonth / 2)) {
                     echo "Vous n'avez validé le mois de ${month} pour l'instant ! Motivez vous :)"
                 } else {
                     echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :)"
