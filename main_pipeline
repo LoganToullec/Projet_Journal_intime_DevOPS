@@ -75,7 +75,10 @@ pipeline {
     stage('Build') {
       steps {
         echo "${params.Month}"
-        echo "${params.USinEPIC.size()}"
+        String[] str;
+        str = params.USinEPIC.split(',');
+        for( String values : str )
+        println(values);
       }
     }
   }
