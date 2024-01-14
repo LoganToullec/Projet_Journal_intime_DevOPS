@@ -62,9 +62,7 @@ properties([
             classpath: [], 
             sandbox: false, 
             script: 
-                "
-                return ${activity_by_months[Month]} ?: []
-                "
+                "${activity_by_months[Month]}"
         ]
     ]
    ]
