@@ -76,7 +76,7 @@ pipeline {
       steps {
         script {
             echo "${params.Month}"
-            def selectedChoicesList = selectedChoices.split(',')
+            def selectedChoicesList = USinEPIC.split(',')
 
             // Afficher les choix sélectionnés
             println("Choix sélectionnés : ${selectedChoicesList.join(', ')}") 
