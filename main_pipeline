@@ -74,11 +74,14 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        //echo "${params.Month}"
-        def selectedChoicesList = selectedChoices.split(',')
+        script {
+            echo "${params.Month}"
+            def selectedChoicesList = selectedChoices.split(',')
 
-        // Afficher les choix sélectionnés
-        println("Choix sélectionnés : ${selectedChoicesList.join(', ')}")       
+            // Afficher les choix sélectionnés
+            println("Choix sélectionnés : ${selectedChoicesList.join(', ')}") 
+        }
+              
       }
     }
   }
