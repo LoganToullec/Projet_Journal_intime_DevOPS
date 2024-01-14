@@ -1,23 +1,3 @@
-def months_tab = [
-    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-]
-
-def activity_by_months = [
-    'Janvier': ["Acheter un journal intime", "raconter une première journée dans le journal", "Parler de 5 sujets différentes dans le journal"],
-    'Février': ["Réaliser un croquis de la décoration souhaitée", "Réaliser un inventaire / liste d'achats", "Acheter les décorations manquantes", "Installer les décorations"],
-    'Mars': ["Sortir prendre l'air une fois par semaine","Manger sainement et s'autoriser un écart par semaine","Suivre des heures de coucher et de réveil","Aller courir 3 fois par semaine","Suivre une routine de soin de la peau"],
-    'Avril': ["Faire la surprise de rendre visite à mes grands-parents","Inviter des amis à faire une sortie","Adopter un animal à la SPA","Faire plaisir à une personne proche","Venir en aide à une personne dans le besoin"],
-    'Mai': ["participer à des compétitions de JJB", "prendre des billets pour une nouvelle destination", "s'inscrire à des cours de zumba", "faire du parachute"],
-    'Juin': ["Offrir des cadeaux","tester un restaurant que tout le monde aime", "réserver des billets pour un voyage en famille", "organiser un pique-nique"],
-    'Juillet': ["Inviter des amis à Lollapalooza", "Acheter les billets pour le festival", "Assister aux feux d'artifices", "Prendre des photos"],
-    'Août': ["Préparer un pique-nique", "Prendre un bain de minuit", "Faire une promenade", "Contempler les étoiles"],
-    'Septembre': ["planifier un voyage", "rechercher des endroits à explorer", "s'entraîner physiquement pour le voyage", "acheter un appareil photo"],
-    'Octobre': ["explorer les sites des cours en ligne", "choisir des cours", "participer à des groupes d'études", "réaliser un projet personnel"],
-    'Novembre': ["Sélection de l'instrument à apprendre","Commencer des tutoriels pour débutants","Suivi des progrès","Partager sa progression"],
-    'Décembre': ["Introduction à la respiration consciente","Rappels quotidiens pour respirer"]
-]
-
 properties([
   parameters([
     booleanParam(
