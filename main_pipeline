@@ -1,30 +1,38 @@
+properties([
+  parameters([
+    [
+      $class: 'ChoiceParameter',
+      choiceType: 'PT_SINGLE_SELECT',
+      name: 'Month',
+      script: [
+        $class: 'ScriptlerScript',
+        scriptlerScriptId:'Months.groovy'
+      ]
+    ],
+    [
+      $class: 'CascadeChoiceParameter',
+      choiceType: 'PT_SINGLE_SELECT',
+      name: 'USinEPIC',
+      referencedParameters: 'Month',
+      script: [
+        $class: 'ScriptlerScript',
+        scriptlerScriptId:'USinEPIC.groovy',
+        parameters: [
+          [name:'Month', value: '$Month']
+        ]
+      ]
+   ]
+ ])
+])
+
 pipeline {
-    agent any
-    parameters {
-
-        
-
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo "${params.Month}"
+        echo "${params.USinEPIC}"
+      }
     }
-    stages {
-        stage('Printing Parameters') {
-            steps {
-                
-            }
-        }
-    stage('BUILD') {
-            steps {
-                echo 'Developpement'
-            }
-        }
-    stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('DEPLOY') {
-            steps {
-                echo 'Mise en Production'
-            }
-        }
-    }
+  }
 }
