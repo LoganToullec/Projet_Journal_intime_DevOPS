@@ -105,21 +105,22 @@ pipeline {
             def selectedChoicesList = USinEPIC.split(',')
             def selectedChoicesAmount = selectedChoicesList.size()
             def activityAmountForMonth = activity_by_months[month].size()
+            def percentage = selectedChoicesAmount * 100 / activityAmountForMonth
 
             if (selectedChoicesAmount == activityAmountForMonth) {
                 echo "Félicitations, vous avez validé toutes vos envies de ${month} !!!"
             }
             else if (beforeHalf) {
                 if(selectedChoicesAmount >= (activityAmountForMonth / 2)) {
-                    echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :)"
+                    echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :) (${percentage}%)"
                 } else {
-                    echo "Vous n'avez pas validé le mois de ${month} pour l'instant ! Motivez vous :)"
+                    echo "Vous n'avez pas validé le mois de ${month} pour l'instant ! Motivez vous :) (${percentage}%)"
                 }
             } else {
                 if(selectedChoicesAmount <= (activityAmountForMonth / 2)) {
-                    echo "Vous n'avez validé le mois de ${month} pour l'instant ! Motivez vous :)"
+                    echo "Vous n'avez validé le mois de ${month} pour l'instant ! Motivez vous :) (${percentage}%)"
                 } else {
-                    echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :)"
+                    echo "Vous avez validé le mois de ${month} pour l'instant ! Continuez :) (${percentage}%)"
                 }
             }
         }              
