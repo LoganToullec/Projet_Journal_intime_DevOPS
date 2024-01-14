@@ -20,11 +20,6 @@ def activity_by_months = [
 
 properties([
   parameters([
-    booleanParam(
-        defaultValue: false,
-        description: 'Cochez cette case si la date est avant le 15.',
-        name: 'beforeHalf'
-    ),
     [
       $class: 'ChoiceParameter',
       choiceType: 'PT_SINGLE_SELECT',
@@ -89,8 +84,13 @@ properties([
                     }
                 '''
         ]
+        ]
     ]
-   ]
+    booleanParam(
+        defaultValue: false,
+        description: 'Cochez cette case si la date est avant le 15.',
+        name: 'beforeHalf'
+    ),
  ])
 ])
 
@@ -100,9 +100,23 @@ pipeline {
     stage('Build') {
       steps {
         script {
-            echo "${params.Month}"
-            echo "${params.beforeHalf}"
+            def month = params.Month
+            def beforeHalf = params.beforeHalf
             def selectedChoicesList = USinEPIC.split(',')
+            def selectedChoicesAmount = selectedChoicesList.size()
+            def selectedChoiceLimitToValidate = new DecimalFormat("#").format(activity_by_months[month].size.intdiv(2))
+            
+
+            if (beforeHalf) {
+                if (selectedChoicesAmount == activity_by_months[month]) {
+                    echo "Félicitations, vous avez validé toutes vos envies de ${month}"
+                }
+                else if(selectedChoicesAmount >= selectedChoiceLimitToValidate) {
+                    echo "Vous avez validé le mois de ${month} pour l'instant !"
+                } else {
+                    echo "Vous n'avez pas validé le mois de ${month}"
+                }
+            }
 
             // Afficher les choix sélectionnés
             println("Choix sélectionnés : ${selectedChoicesList}") 
