@@ -48,7 +48,7 @@ properties([
                             'Novembre': ["Sélection de l'instrument à apprendre","Commencer des tutoriels pour débutants","Suivi des progrès","Partager sa progression"],
                             'Décembre': ["Introduction à la respiration consciente","Rappels quotidiens pour respirer", "Prendre le temps de méditer", "Faire au moins un exercice par jour"]
                         ]
-                        def selectedMonth = binding.variables.Month
+                        def selectedMonth = binding.variables.get('Month')
                         return activity_by_months[selectedMonth] ?: []
                     '''
                 ]
