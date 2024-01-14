@@ -11,7 +11,7 @@ properties([
     ],
     [
       $class: 'CascadeChoiceParameter',
-      choiceType: 'PT_SINGLE_SELECT',
+      choiceType: 'PT_CHECKBOX',
       name: 'USinEPIC',
       referencedParameters: 'Month',
       script: [
