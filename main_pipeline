@@ -19,70 +19,54 @@ def activity_by_months = [
 ]
 
 properties([
-  parameters([
-    booleanParam(
-        defaultValue: false,
-        description: 'Cochez cette case si la date est avant le 15.',
-        name: 'before_half'
-    ),
-    [
-      $class: 'ChoiceParameter',
-      choiceType: 'PT_SINGLE_SELECT',
-      name: 'Month',
-      script: [
-            $class: 'GroovyScript', 
-            fallbackScript: [
-                classpath: [], 
-                sandbox: false, 
-                script: 
-                    'return[\'Could not get Env\']'
-            ], 
+    parameters([
+        booleanParam(
+            defaultValue: false,
+            description: 'Cochez cette case si la date est avant le 15.',
+            name: 'before_half'
+        ),
+        choice(
+            choices: months_tab,
+            description: 'Sélectionnez un mois',
+            name: 'Month'
+        ),
+        cascadeChoice(
+            choiceType: 'PT_CHECKBOX',
+            description: 'Sélectionnez des activités',
+            name: 'USinEPIC',
+            referencedParameters: 'Month',
             script: [
-                classpath: [], 
-                sandbox: false, 
-                script: 
-                    "${months_tab.inspect()}"
+                $class: 'GroovyScript',
+                fallbackScript: [
+                    classpath: [], 
+                    sandbox: false, 
+                    script: 'return[\'Could not get Month from Env Param\']'
+                ],
+                script: [
+                    classpath: [], 
+                    sandbox: false, 
+                    script: 'return activity_by_months[params.Month] ?: []'
+                ]
             ]
-        ]
-    ],
-    [
-      $class: 'CascadeChoiceParameter',
-      choiceType: 'PT_CHECKBOX',
-      name: 'USinEPIC',
-      referencedParameters: 'Month',
-      script: [
-        $class: 'GroovyScript', 
-        fallbackScript: [
-            classpath: [], 
-            sandbox: false, 
-            script: 
-                'return[\'Could not get Month from Env Param\']'
-        ], 
-        script: [
-            classpath: [], 
-            sandbox: false, 
-            script: 
-                "${activity_by_months[Month]}"
-        ]
-    ]
-   ]
- ])
+        )
+    ])
 ])
 
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        script {
-            echo "${params.Month}"
-            echo "${params.before_half}"
-            def selectedChoicesList = USinEPIC.split(',')
-
-            // Afficher les choix sélectionnés
-            println("Choix sélectionnés : ${selectedChoicesList}") 
-        }              
-      }
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    echo "${params.Month}"
+                    echo "${params.before_half}"
+                    
+                    def selectedChoicesList = params.USinEPIC.split(',')
+                    
+                    // Afficher les choix sélectionnés
+                    println("Choix sélectionnés : ${selectedChoicesList}") 
+                }
+            }
+        }
     }
-  }
 }
