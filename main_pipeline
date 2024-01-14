@@ -41,7 +41,7 @@ properties([
                 classpath: [], 
                 sandbox: false, 
                 script: 
-                    'return ${months_tab.inspect()}'
+                    'return months_tab'
             ]
         ]
     ],
