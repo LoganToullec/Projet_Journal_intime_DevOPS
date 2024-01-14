@@ -74,9 +74,11 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo "${params.Month}"
-        def str = params.USinEPIC.split(',')
-        echo "${str}"        
+        //echo "${params.Month}"
+        def selectedChoicesList = selectedChoices.split(',')
+
+        // Afficher les choix sélectionnés
+        println("Choix sélectionnés : ${selectedChoicesList.join(', ')}")       
       }
     }
   }
