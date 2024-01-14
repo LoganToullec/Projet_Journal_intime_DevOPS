@@ -85,12 +85,12 @@ properties([
                 '''
         ]
         ]
-    ]
+    ],
     booleanParam(
         defaultValue: false,
         description: 'Cochez cette case si la date est avant le 15.',
         name: 'beforeHalf'
-    ),
+    )
  ])
 ])
 
