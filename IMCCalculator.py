@@ -15,9 +15,9 @@ def main():
     args = parser.parse_args()
 
     imc = calculer_imc(args.poids, args.taille)
+    print(imc)
     if imc is not None:
-        #sys.exit(int(imc))
-        print >>sys.stderr, str(imc)
+        print(int(imc * 10))
     else:
         print("Erreur lors du calcul de l'IMC.")
         sys.exit(1)
