@@ -1,5 +1,6 @@
 import sys
 import argparse
+import IMCInterpretor
 
 def calculer_imc(poids, taille):
     try:
@@ -17,7 +18,7 @@ def main():
     imc = calculer_imc(args.poids, args.taille)
     print(imc)
     if imc is not None:
-        print(int(imc * 10))
+        IMCInterpretor.interpreter_imc(imc)
     else:
         print("Erreur lors du calcul de l'IMC.")
         sys.exit(1)
