@@ -105,7 +105,7 @@ properties([
 ])
 
 pipeline {
-    
+
   agent any
   stages {
     stage('Build') {
@@ -143,8 +143,10 @@ pipeline {
     stage('Calcul') {
         steps {
             script {
+                def height = params.Height
+                def weight = params.Weight
                 // Appeler le script Python avec la taille et le poids
-                def resultat = sh(script: "python3 IMCCalculator.py ${taille} ${poids}", returnStatus: true).trim()
+                def resultat = sh(script: "python3 IMCCalculator.py ${height} ${weight}", returnStatus: true).trim()
 
                 // Imprimer le résultat (juste pour vérification)
                 echo "Résultat du calcul : ${resultat}"
