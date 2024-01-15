@@ -18,7 +18,8 @@ def main():
     imc = calculer_imc(args.poids, args.taille)
     print(imc)
     if imc is not None:
-        IMCInterpretor.interpreter_imc(imc)
+        interpretation = IMCInterpretor.interpreter_imc(imc)
+        print(f"Pour un IMC de {imc:.2f}, la catégorie est: {interpretation}")
     else:
         print("Erreur lors du calcul de l'IMC.")
         sys.exit(1)
