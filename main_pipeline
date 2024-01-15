@@ -148,9 +148,6 @@ pipeline {
                 // Appeler le script Python avec la taille et le poids
                 def resultat = sh(script: "python3 IMCCalculator.py ${weight} ${height}", returnStatus: true)
 
-                // Imprimer le résultat (juste pour vérification)
-                echo "Résultat du calcul : ${resultat}"
-
                 // Stocker la valeur de retour dans une variable
                 env.IMC_RESULT = resultat
             }
