@@ -147,7 +147,7 @@ pipeline {
                 def weight = params.Weight
                 // Appeler le script Python avec la taille et le poids
                 def resultat = sh(script: "python3 IMCCalculator.py ${weight} ${height}", returnStatus: true)
-                echo "${resultat}"
+                echo "resultat: ${resultat}"
                 sh(script: "python3 IMCInterpretor.py ${resultat}", returnStatus: true)
 
             }
