@@ -143,10 +143,13 @@ pipeline {
     stage('Calcul et utilisation IMC') {
         steps {
             script {
-                def height = params.Height
-                def weight = params.Weight
-                // Appeler le script Python avec la taille et le poids
-                def resultat = sh(script: "python3 IMCCalculator.py ${weight} ${height}", returnStatus: true)
+                def month = params.Month
+                if(month.equals("Mars")) {
+                    def height = params.Height
+                    def weight = params.Weight
+                    // Appeler le script Python avec la taille et le poids
+                    def resultat = sh(script: "python3 IMCCalculator.py ${weight} ${height}", returnStatus: true)
+                }
              }
         }
     }
