@@ -17,10 +17,10 @@ def main():
     imc = calculer_imc(args.poids, args.taille)
     print(imc)
     if imc is not None:
-        sys.exit(int(imc))
+        return float(imc)
     else:
         print("Erreur lors du calcul de l'IMC.")
-        sys.exit(1)
+        return 1
 
 if __name__ == "__main__":
     main()
