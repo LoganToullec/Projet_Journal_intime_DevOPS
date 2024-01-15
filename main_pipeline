@@ -105,9 +105,8 @@ properties([
 ])
 
 pipeline {
-  agent {
-        label 'python'
-    }
+    
+  agent any
   stages {
     stage('Build') {
       steps {
