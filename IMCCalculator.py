@@ -17,7 +17,7 @@ def main():
     imc = calculer_imc(args.poids, args.taille)
     print(imc)
     if imc is not None:
-        return float(imc)
+        return str(imc)
     else:
         print("Erreur lors du calcul de l'IMC.")
         return 1
