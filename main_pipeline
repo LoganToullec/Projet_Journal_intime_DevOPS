@@ -140,28 +140,18 @@ pipeline {
 
     // This is a bonus step, depending to choosen month, to display or note two more parameters height and weight, to compute IMC
     // and display information concerning to this
-    stage('Calcul') {
+    stage('Calcul et utilisation IMC') {
         steps {
             script {
                 def height = params.Height
                 def weight = params.Weight
                 // Appeler le script Python avec la taille et le poids
                 def resultat = sh(script: "python3 IMCCalculator.py ${weight} ${height}", returnStatus: true)
+                sh(script: "python3 IMCInterpretor.py ${resultat}", returnStatus: true)
 
-                // Stocker la valeur de retour dans une variable
-                env.IMC_RESULT = resultat
             }
         }
     }
 
-    stage('Utilisation du Résultat') {
-        steps {
-            script {
-                // Utiliser la valeur stockée dans la variable CALCUL_RESULTAT
-                def IMCResult = env.IMC_RESULT
-                sh(script: "python3 IMCInterpretor.py ${IMCResult}", returnStatus: true)
-            }
-        }
-    }
   }
 }
