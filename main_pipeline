@@ -91,11 +91,23 @@ properties([
         description: 'Cochez cette case si la date est avant le 15.',
         name: 'beforeHalf'
     ),
+    text(
+        defaultValue: '0',
+        description: 'Entrez votre taille uniquement si nous sommes au mois de mars',
+        name: 'Height'
+    ),
+    text(
+        defaultValue: '0',
+        description: 'Entrez votre poids uniquement si nous sommes au mois de mars',
+        name: 'Weight'
+    )
  ])
 ])
 
 pipeline {
-  agent any
+  agent {
+    label 'python'
+  }   
   stages {
     stage('Build') {
       steps {
@@ -125,6 +137,33 @@ pipeline {
             }
         }              
       }
+    }
+
+    // This is a bonus step, depending to choosen month, to display or note two more parameters height and weight, to compute IMC
+    // and display information concerning to this
+    stage('Calcul') {
+        steps {
+            script {
+                // Appeler le script Python avec la taille et le poids
+                def resultat = sh(script: "python3 IMCCalculator.py ${taille} ${poids}", returnStatus: true).trim()
+
+                // Imprimer le résultat (juste pour vérification)
+                echo "Résultat du calcul : ${resultat}"
+
+                // Stocker la valeur de retour dans une variable
+                env.IMC_RESULT = resultat
+            }
+        }
+    }
+
+    stage('Utilisation du Résultat') {
+        steps {
+            script {
+                // Utiliser la valeur stockée dans la variable CALCUL_RESULTAT
+                def IMCResult = env.IMC_RESULT
+                sh(script: "python3 IMCInterpretor.py ${IMCResult}", returnStatus: true)
+            }
+        }
     }
   }
 }
