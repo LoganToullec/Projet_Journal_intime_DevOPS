@@ -16,7 +16,8 @@ def main():
 
     imc = calculer_imc(args.poids, args.taille)
     if imc is not None:
-        sys.exit(str(imc))
+        #sys.exit(int(imc))
+        print >>sys.stderr, str(imc)
     else:
         print("Erreur lors du calcul de l'IMC.")
         sys.exit(1)
