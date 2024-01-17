@@ -91,12 +91,12 @@ properties([
         description: 'Cochez cette case si la date est avant le 15.',
         name: 'beforeHalf'
     ),
-    string(
+    integer(
         defaultValue: '0',
         description: 'Entrez votre taille uniquement si nous sommes au mois de mars',
         name: 'Height'
     ),
-    string(
+    integer(
         defaultValue: '0',
         description: 'Entrez votre poids uniquement si nous sommes au mois de mars',
         name: 'Weight'
